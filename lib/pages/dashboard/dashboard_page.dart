@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:newroz_shop/pages/category/category_page.dart';
 import 'package:newroz_shop/pages/home/home_page.dart';
 import 'package:newroz_shop/pages/setting/setting_page.dart';
+import 'package:newroz_shop/utils/my_color.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -30,6 +32,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
 
       appBar: AppBar(
+        backgroundColor: MyColor.app_color,
         title: Text('نوروز شاپ' , style: TextStyle(
 
           fontFamily: 'IRANSans'
@@ -43,21 +46,42 @@ class _DashboardPageState extends State<DashboardPage> {
         child: _widgetsList.elementAt(_currentItem),
       ) ,
 
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: SalomonBottomBar(
 
-        backgroundColor: Colors.blueAccent,
-        elevation: 0,
-        selectedIconTheme: IconThemeData(color: Colors.amberAccent),
-        selectedItemColor: Colors.amberAccent,
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        selectedItemColor: Colors.white,
         currentIndex: _currentItem, // new
         onTap: onTabTapped,
 
         items: [
 
-          BottomNavigationBarItem(icon: Icon(Icons.home) , label: 'خانه'),
-          BottomNavigationBarItem(icon: Icon(Icons.category) , label: 'دسته بندی'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings) , label: 'تنظیمات')
+          SalomonBottomBarItem(
+            icon: Icon(Icons.home),
+            title: Text('خانه',style: TextStyle(
+
+                fontFamily: 'IRANSans'
+
+            )),
+            selectedColor: Colors.purple,
+          ),
+          SalomonBottomBarItem(
+            icon: Icon(Icons.category),
+            title: Text('دسته بندی',style: TextStyle(
+
+                fontFamily: 'IRANSans'
+
+            )),
+            selectedColor: Colors.purple,
+          ),
+
+          SalomonBottomBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('تنظیمات',style: TextStyle(
+
+                fontFamily: 'IRANSans'
+
+            )),
+            selectedColor: Colors.purple,
+          ),
 
         ],
 

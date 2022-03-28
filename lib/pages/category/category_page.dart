@@ -51,7 +51,7 @@ class _CategoryPageState extends State<CategoryPage> {
               ],
             );
           } else {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator(),);
           }
         },
       ),

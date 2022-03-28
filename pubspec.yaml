@@ -41,6 +41,9 @@ dependencies:
   dio: ^4.0.1
   firebase_crashlytics: ^2.5.2
   google_mobile_ads: ^1.1.0
+  salomon_bottom_bar: ^3.3.0
+  flutter_image_slideshow: ^0.1.2
+  flutter_rating_bar: ^4.0.0
 
 dev_dependencies:
   flutter_test:

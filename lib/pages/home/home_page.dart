@@ -4,6 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:newroz_shop/api/rest_client.dart';
 import 'package:newroz_shop/customViews/persian_text.dart';
 import 'package:newroz_shop/models/base_model.dart';
+import 'package:newroz_shop/pages/productDatail/product_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,279 +35,315 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body:
 
-      SingleChildScrollView(
-
-        child: FutureBuilder<BaseModel>(
+     FutureBuilder<BaseModel>(
           future: getHome,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Container(
-                //height: MediaQuery.of(context).size.height-140,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      padding: EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('نمایش همه',
-                              style: TextStyle(fontFamily: 'IRANSans')),
-                          Text(
-                            'برترین موبایل ها',
-                            style: TextStyle(fontFamily: 'IRANSans'),
-                          )
-                        ],
+              return SingleChildScrollView(
+
+                child: Container(
+                  //height: MediaQuery.of(context).size.height-140,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('نمایش همه',
+                                style: TextStyle(fontFamily: 'IRANSans')),
+                            Text(
+                              'برترین موبایل ها',
+                              style: TextStyle(fontFamily: 'IRANSans'),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
 
-                    SizedBox(
-                      height: 200,
-                      child:  ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: snapshot.data?.mobile?.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context , index) {
+                      SizedBox(
+                        height: 200,
+                        child:  ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data?.mobile?.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context , index) {
 
-                            return Container(
-                              height: 200,
-                              width: 120,
-                              margin: EdgeInsets.all(8),
-                              child: Card(
+                              return
 
-                                elevation: 8,
+                                GestureDetector(
+                                  onTap: () {
 
-                                child: Container(
+                                    Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductPage(product: snapshot.data!.mobile![index] )));
 
-                                  height: 200,
-                                  width: 120,
+                                  },
+                                  child: Container(
+                                    height: 200,
+                                    width: 120,
+                                    margin: EdgeInsets.all(8),
+                                    child: Card(
 
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage('${snapshot.data!.mobile![index].icon}',)
+                                      elevation: 8,
 
-                                      )
-                                  ),
+                                      child: Container(
 
+                                        height: 200,
+                                        width: 120,
 
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: NetworkImage('${snapshot.data!.mobile![index].icon}',)
 
-
-
-                                ),
-
-                              ),
-                            );
-
-                          }),
-                    ),
-
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      padding: EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('نمایش همه',
-                              style: TextStyle(fontFamily: 'IRANSans')),
-                          Text(
-                            'آرایشی و بهداشتی',
-                            style: TextStyle(fontFamily: 'IRANSans'),
-                          )
-                        ],
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: 200,
-                      child:  ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: snapshot.data?.makeup?.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context , index) {
-
-                            return Container(
-                              height: 200,
-                              width: 320,
-                              margin: EdgeInsets.all(8),
-                              child: Card(
-
-                                elevation: 8,
-
-                                child: Container(
-
-                                  height: 200,
-                                  width: 120,
-
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: NetworkImage('${snapshot.data!.makeup![index].icon}',)
-
-                                      )
-                                  ),
+                                            )
+                                        ),
 
 
-                                  child: Center(
 
 
-                                    child:
 
-                                    Container(
-
-                                      decoration: BoxDecoration(
-
-                                          gradient: LinearGradient(
-
-                                              colors: [
-
-                                                Colors.amberAccent,
-                                                Colors.red
-
-                                              ]
-                                          )
                                       ),
 
-                                      child: Text(mySubstring('${snapshot.data!.makeup![index].title}') , style:  TextStyle(
-                                          color: Colors.white , fontFamily: 'IRANSans'
-                                      ),),
                                     ),
                                   ),
+                                );
 
-
-
-
-
-                                ),
-
-                              ),
-                            );
-
-                          }),
-                    ),
-
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      padding: EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('نمایش همه',
-                              style: TextStyle(fontFamily: 'IRANSans')),
-                          Text(
-                            'تخفیفان',
-                            style: TextStyle(fontFamily: 'IRANSans'),
-                          )
-                        ],
+                            }),
                       ),
-                    ),
 
-                    SizedBox(
-                      height: 200,
-                      child:  ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: snapshot.data?.discount?.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context , index) {
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('نمایش همه',
+                                style: TextStyle(fontFamily: 'IRANSans')),
+                            Text(
+                              'آرایشی و بهداشتی',
+                              style: TextStyle(fontFamily: 'IRANSans'),
+                            )
+                          ],
+                        ),
+                      ),
 
-                            return Container(
-                              height: 200,
-                              width: 320,
-                              margin: EdgeInsets.all(8),
-                              child: Card(
+                      SizedBox(
+                        height: 200,
+                        child:  ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data?.makeup?.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context , index) {
 
-                                elevation: 8,
-
-                                child: Container(
-
-                                  height: 200,
-                                  width: 120,
-
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: NetworkImage('${snapshot.data!.discount![index].icon}',)
-
-                                      )
-                                  ),
+                              return
 
 
-                                  child: Stack(
+                               GestureDetector(
 
-                                    children: [
+                                 onTap: () {
 
-                                      Positioned(
+                                   Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductPage(product: snapshot.data!.makeup![index] )));
 
-                                        bottom: 20,
-                                         right: 20
+                                 },
 
-                                         , child:    Container(
+                                 child:  Container(
+                                   height: 200,
+                                   width: 320,
+                                   margin: EdgeInsets.all(8),
+                                   child: Card(
 
-                                        decoration: BoxDecoration(
+                                     elevation: 8,
 
-                                            gradient: LinearGradient(
+                                     child: Container(
 
-                                                colors: [
+                                       height: 200,
+                                       width: 120,
 
-                                                  Colors.green,
-                                                  Colors.lightGreen
+                                       decoration: BoxDecoration(
+                                           image: DecorationImage(
+                                               fit: BoxFit.fill,
+                                               image: NetworkImage('${snapshot.data!.makeup![index].icon}',)
 
-                                                ]
-                                            )
-                                        ),
-
-                                        child: PersianTextView(
-                                          title: mySubstring('${snapshot.data!.makeup![index].title}' ) ,fontSize: 18,
-                                            fontColor: Colors.white,
-                                        ),),
+                                           )
                                        ),
 
-                                      Positioned(
 
-                                        top: 20,
-                                          left: 20,
-
-                                          child:     Container(
-
-                                            padding: EdgeInsets.all(4),
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            gradient: LinearGradient(
-
-                                                colors: [
-
-                                                  Colors.red,
-                                                  Colors.red
-
-                                                ]
-                                            )
-                                        ),
-
-                                        child: Text(mySubstring('%${snapshot.data!.discount![index].discount}') , style:  TextStyle(
-                                            color: Colors.white , fontFamily: 'IRANSans'
-                                        ),),
-                                      ))
+                                       child: Center(
 
 
-                                    ],
+                                         child:
 
-                                  )
+                                         Container(
+
+                                           decoration: BoxDecoration(
+
+                                               gradient: LinearGradient(
+
+                                                   colors: [
+
+                                                     Colors.amberAccent,
+                                                     Colors.red
+
+                                                   ]
+                                               )
+                                           ),
+
+                                           child: Text(mySubstring('${snapshot.data!.makeup![index].title}') , style:  TextStyle(
+                                               color: Colors.white , fontFamily: 'IRANSans'
+                                           ),),
+                                         ),
+                                       ),
 
 
 
 
 
-                                ),
+                                     ),
 
-                              ),
-                            );
+                                   ),
+                                 ),
+                               );
 
-                          }),
-                    ),
+                            }),
+                      ),
 
-                  ],
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('نمایش همه',
+                                style: TextStyle(fontFamily: 'IRANSans')),
+                            Text(
+                              'تخفیفان',
+                              style: TextStyle(fontFamily: 'IRANSans'),
+                            )
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 200,
+                        child:  ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data?.discount?.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context , index) {
+
+                              return
+
+                                GestureDetector(
+
+                                  onTap: () {
+
+                                    Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductPage(product: snapshot.data!.discount![index] )));
+
+                                  },
+
+                                  child: Container(
+                                    height: 200,
+                                    width: 320,
+                                    margin: EdgeInsets.all(8),
+                                    child: Card(
+
+                                      elevation: 8,
+
+                                      child: Container(
+
+                                          height: 200,
+                                          width: 120,
+
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image: NetworkImage('${snapshot.data!.discount![index].icon}',)
+
+                                              )
+                                          ),
+
+
+                                          child: Stack(
+
+                                            children: [
+
+                                              Positioned(
+
+                                                bottom: 20,
+                                                right: 20
+
+                                                , child:    Container(
+
+                                                decoration: BoxDecoration(
+
+                                                    gradient: LinearGradient(
+
+                                                        colors: [
+
+                                                          Colors.green,
+                                                          Colors.lightGreen
+
+                                                        ]
+                                                    )
+                                                ),
+
+                                                child: PersianTextView(
+                                                  title: mySubstring('${snapshot.data!.makeup![index].title}' ) ,fontSize: 18,
+                                                  fontColor: Colors.white,
+                                                ),),
+                                              ),
+
+                                              Positioned(
+
+                                                  top: 20,
+                                                  left: 20,
+
+                                                  child:     Container(
+
+                                                    padding: EdgeInsets.all(4),
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        gradient: LinearGradient(
+
+                                                            colors: [
+
+                                                              Colors.red,
+                                                              Colors.red
+
+                                                            ]
+                                                        )
+                                                    ),
+
+                                                    child: Text(mySubstring('%${snapshot.data!.discount![index].discount}') , style:  TextStyle(
+                                                        color: Colors.white , fontFamily: 'IRANSans'
+                                                    ),),
+                                                  ))
+
+
+                                            ],
+
+                                          )
+
+
+
+
+
+                                      ),
+
+                                    ),
+                                  ),
+                                );
+
+                            }),
+                      ),
+
+                    ],
+                  ),
                 ),
+
               );
             } else if (snapshot.hasError) {
               return Column(
@@ -316,11 +353,11 @@ class _HomePageState extends State<HomePage> {
                 ],
               );
             } else {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator(),);
             }
           },
         ),
-      ),
+
 
     );
   }
