@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:newroz_shop/customViews/persian_text.dart';
 import 'package:newroz_shop/models/gallery_model.dart';
 import 'package:newroz_shop/models/product_model.dart';
@@ -8,17 +9,33 @@ import 'package:newroz_shop/utils/my_color.dart';
 
 class ProductPage extends StatefulWidget {
 
-  final Product product;
 
-  const ProductPage({Key? key, required this.product}) : super(key: key);
+
+  const ProductPage({Key? key, }) : super(key: key);
 
   @override
   _ProductPageState createState() => _ProductPageState();
 }
 
 class _ProductPageState extends State<ProductPage> {
+
+
+ late  Product product;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    product = Get.arguments;
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
 
 
@@ -69,13 +86,13 @@ class _ProductPageState extends State<ProductPage> {
               autoPlayInterval: 3000,
               isLoop: true,
               indicatorBackgroundColor: Colors.grey,
-              children: imageList(widget.product.gallery!),
+              children: imageList(product.gallery!),
 
 
             ),
 
             PersianTextView(
-              title: widget.product.title, fontColor: Colors.black,
+              title: product.title, fontColor: Colors.black,
               fontSize: 14,),
 
             RatingBar.builder(

@@ -6,6 +6,7 @@ import 'package:newroz_shop/pages/home/home_page.dart';
 import 'package:newroz_shop/pages/setting/setting_page.dart';
 import 'package:newroz_shop/utils/my_color.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:get/get.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _DashboardPageState extends State<DashboardPage> {
         centerTitle: true,
 
       ),
-      body: Center(
+      body: SizedBox(
 
         child: _widgetsList.elementAt(_currentItem),
       ) ,
@@ -56,7 +57,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
           SalomonBottomBarItem(
             icon: Icon(Icons.home),
-            title: Text('خانه',style: TextStyle(
+            title: Text('home'.tr,style: TextStyle(
 
                 fontFamily: 'IRANSans'
 
@@ -65,7 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           SalomonBottomBarItem(
             icon: Icon(Icons.category),
-            title: Text('دسته بندی',style: TextStyle(
+            title: Text('category'.tr,style: TextStyle(
 
                 fontFamily: 'IRANSans'
 
@@ -75,7 +76,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
           SalomonBottomBarItem(
             icon: Icon(Icons.settings),
-            title: Text('تنظیمات',style: TextStyle(
+            title: Text('setting'.tr,style: TextStyle(
 
                 fontFamily: 'IRANSans'
 

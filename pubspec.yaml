@@ -44,6 +44,8 @@ dependencies:
   salomon_bottom_bar: ^3.3.0
   flutter_image_slideshow: ^0.1.2
   flutter_rating_bar: ^4.0.0
+  get: ^4.6.1
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:

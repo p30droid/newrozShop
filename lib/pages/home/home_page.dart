@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:newroz_shop/api/rest_client.dart';
 import 'package:newroz_shop/customViews/persian_text.dart';
 import 'package:newroz_shop/models/base_model.dart';
+import 'package:newroz_shop/models/product_model.dart';
 import 'package:newroz_shop/pages/productDatail/product_page.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -54,10 +57,10 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('نمایش همه',
+                            Text('show_all'.tr,
                                 style: TextStyle(fontFamily: 'IRANSans')),
                             Text(
-                              'برترین موبایل ها',
+                              'mobiles'.tr,
                               style: TextStyle(fontFamily: 'IRANSans'),
                             )
                           ],
@@ -77,7 +80,9 @@ class _HomePageState extends State<HomePage> {
                                 GestureDetector(
                                   onTap: () {
 
-                                    Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductPage(product: snapshot.data!.mobile![index] )));
+                                   // Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductPage(product: snapshot.data!.mobile![index] )));
+                                    Product product = snapshot.data!.discount![index];
+                                    Get.toNamed('/product',arguments: product);
 
                                   },
                                   child: Container(
@@ -120,10 +125,10 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('نمایش همه',
+                            Text('show_all'.tr,
                                 style: TextStyle(fontFamily: 'IRANSans')),
                             Text(
-                              'آرایشی و بهداشتی',
+                              'makeup'.tr,
                               style: TextStyle(fontFamily: 'IRANSans'),
                             )
                           ],
@@ -144,9 +149,8 @@ class _HomePageState extends State<HomePage> {
                                GestureDetector(
 
                                  onTap: () {
-
-                                   Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductPage(product: snapshot.data!.makeup![index] )));
-
+                                   Product product = snapshot.data!.discount![index];
+                                   Get.toNamed('/product',arguments: product);
                                  },
 
                                  child:  Container(
@@ -216,10 +220,10 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('نمایش همه',
+                            Text('show_all'.tr,
                                 style: TextStyle(fontFamily: 'IRANSans')),
                             Text(
-                              'تخفیفان',
+                              'discount'.tr,
                               style: TextStyle(fontFamily: 'IRANSans'),
                             )
                           ],
@@ -240,8 +244,8 @@ class _HomePageState extends State<HomePage> {
 
                                   onTap: () {
 
-                                    Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductPage(product: snapshot.data!.discount![index] )));
-
+                                    Product product = snapshot.data!.discount![index];
+                                    Get.toNamed('/product',arguments: product);
                                   },
 
                                   child: Container(
